@@ -21,43 +21,25 @@
   },
 
   "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/skill-activation-prompt.sh"
+          }
+        ]
+      }
+    ],
     "PostToolUse": [
       {
-        "id": "auto-update-progress",
-        "description": "Auto-update tasks.md after file editing (PostToolUse Hook)",
-        "enabled": true,
-        "priority": "high",
-        "matcher": {
-          "filePatterns": [
-            "*.py",
-            "*.js",
-            "*.ts",
-            "*.tsx",
-            "*.jsx",
-            "*.java",
-            "*.cpp",
-            "*.c",
-            "*.h",
-            "*.md",
-            "*.json",
-            "*.yaml",
-            "*.yml",
-            "*.xml"
-          ],
-          "excludePatterns": [
-            "node_modules/*",
-            ".git/*",
-            "dist/*",
-            "build/*",
-            "__pycache__/*",
-            ".pytest_cache/*"
-          ]
-        },
-        "script": "$CLAUDE_PROJECT_DIR/.claude/hooks/post-tool-use-tracker.sh",
-        "scriptType": "bash",
-        "timeout": 15000,
-        "onError": "continue",
-        "async": false
+        "matcher": "Edit|MultiEdit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ${CLAUDE_PLUGIN_ROOT}/.claude/hooks/post-tool-use-tracker.py"
+          }
+        ]
       }
     ],
 
@@ -72,12 +54,5 @@
         "onError": "continue"
       }
     ]
-  },
-
-  "environment": {
-    "CLAUDE_PROJECT_DIR": "$PWD",
-    "CLAUDE_PROJECT_NAME": "",
-    "CLAUDE_ENABLE_HOOKS": "true",
-    "CLAUDE_HOOK_DEBUG": "false"
   }
 }

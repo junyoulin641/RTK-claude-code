@@ -13,7 +13,7 @@ Resume development exactly where you left off, automatically loading all project
 ```bash
 # Check if dev/active/ exists
 if [ ! -d "dev/active/" ]; then
-    echo " No active projects found"
+    echo "No active projects found"
     echo "Run /dev-docs first to create a new project"
     exit 1
 fi
@@ -27,22 +27,36 @@ PROJECT_PATH="dev/active/$PROJECT_NAME"
 ```bash
 # Check for all three required files
 if [ ! -f "$PROJECT_PATH/$PROJECT_NAME-plan.md" ]; then
-    echo " Missing: $PROJECT_NAME-plan.md"
+    echo "Missing: $PROJECT_NAME-plan.md"
     exit 1
 fi
 
 if [ ! -f "$PROJECT_PATH/$PROJECT_NAME-context.md" ]; then
-    echo " Missing: $PROJECT_NAME-context.md"
+    echo "Missing: $PROJECT_NAME-context.md"
     exit 1
 fi
 
 if [ ! -f "$PROJECT_PATH/$PROJECT_NAME-tasks.md" ]; then
-    echo " Missing: $PROJECT_NAME-tasks.md"
+    echo "Missing: $PROJECT_NAME-tasks.md"
     exit 1
 fi
 ```
 
-### Step 3: Auto-Load Project Documents
+### Step 3: CRITICAL - Verify Working Directory at Project Root
+```bash
+# Verify we are at project root
+if [ ! -d "dev/active/$PROJECT_NAME" ]; then
+    echo "ERROR: Not at project root!"
+    exit 1
+fi
+
+CURRENT_DIR=$(pwd)
+echo "Working directory: $CURRENT_DIR"
+echo "Code location: ./src/, ./tests/, ./config/"
+echo "Docs location: dev/active/$PROJECT_NAME/"
+```
+
+### Step 4: Auto-Load Project Documents (Do NOT change directory)
 Claude automatically reads and understands:
 
 **1. Project Plan** (`$PROJECT_NAME-plan.md`)
@@ -56,55 +70,44 @@ Claude automatically reads and understands:
 - Current architecture and tech stack
 - Key file locations
 - Architecture decisions and constraints
-- Current blockers and status
 
 **3. Task Checklist** (`$PROJECT_NAME-tasks.md`)
 - Complete list of all tasks by phase
 - Completion status for each task
 - Progress metrics
 - Dependencies between tasks
-- Implementation notes
 
-### Step 4: Analyze Current Progress
+### Step 5: Analyze Current Progress
 
 Based on tasks.md, Claude determines:
--  How many tasks are completed
--  How many tasks are in progress
--  How many tasks are not started
--  Overall completion percentage
--  Next uncompleted task to work on
+- How many tasks are completed
+- How many tasks are in progress
+- How many tasks are not started
+- Overall completion percentage
+- Next uncompleted task to work on
 
-### Step 5: Generate Status Summary
-```
-✓ Project detected: royaltek-dashboard
-✓ Files loaded: plan, context, tasks
-✓ Phase 1: 3/5 tasks completed (60%)
-✓ Current task: 1.4 Database Schema Design
-✓ Status: Ready to continue
-```
-
-### Step 6: Continue Implementation
+### Step 6: Continue Implementation at Project Root
 
 Claude will:
 
 1. **Review next uncompleted task details**
    - Read specific task description
-   - Check dependencies (are dependencies completed?)
+   - Check dependencies
    - Understand acceptance criteria
 
 2. **Load relevant context**
-   - Check architecture decisions from context.md
+   - Check architecture decisions
    - Review current system state
    - Identify any blockers
 
 3. **Start implementation**
-   - Create necessary files/components
-   - Follow RoyalTek code standards automatically
+   - Create files in: `./src/`, `./tests/`, `./config/`
+   - NOT in: `dev/active/[project]/`
+   - Follow RoyalTek code standards
    - Apply code-style skill
-   - Trigger code-reviewer when applicable
 
 4. **Update progress after completion**
-   - Mark task as "Completed" in tasks.md
+   - Mark task as "Completed" in: `dev/active/$PROJECT_NAME/$PROJECT_NAME-tasks.md`
    - Update progress percentage
    - Add implementation notes
    - Move to next task
@@ -122,35 +125,46 @@ Load [project-name]-plan.md
 Load [project-name]-context.md
 Load [project-name]-tasks.md
   ↓
+Verify at project root (CRITICAL)
+  ↓
 Analyze completion status
   ↓
-Display status summary
-  ↓
-Start/continue implementation from next uncompleted task
+Continue implementation from project root
   ↓
 Auto-update tasks.md as tasks complete
+```
+
+## Working Directory Strategy
+
+**CRITICAL**: Work from project root throughout entire session
+
+```
+✓ Code location: ./src/, ./tests/, ./config/
+✓ Docs location: dev/active/[project-name]/
+✓ Working directory: Project root (never change)
+
+✗ DO NOT write code to: dev/active/[project-name]/src/
+✗ DO NOT change to: dev/active/[project-name]/
 ```
 
 ## Error Handling
 
 ### Missing dev/active/ directory
 ```
- Error: dev/active/ directory not found
+Error: dev/active/ directory not found
 Run /dev-docs first to create a new project
-
-Example:
-  /dev-docs
-  Project name: my-project
-  Description: My awesome project
 ```
 
 ### Missing project files
 ```
- Error: Cannot find [project-name]-plan.md
- Error: Cannot find [project-name]-context.md
- Error: Cannot find [project-name]-tasks.md
-
+Error: Cannot find project files
 Solution: Run /update-dev-docs to regenerate files
+```
+
+### Not at project root
+```
+ERROR: Not at project root!
+Make sure you're in the project directory
 ```
 
 ### No uncompleted tasks
@@ -158,11 +172,6 @@ Solution: Run /update-dev-docs to regenerate files
 ✓ All tasks completed!
 Project: royaltek-dashboard
 Status: 100% Complete
-
-Options:
-  1. Review completed tasks
-  2. Add new tasks
-  3. Start new project with /dev-docs
 ```
 
 ## Switching Between Projects
@@ -170,116 +179,49 @@ Options:
 If you have multiple projects in dev/active/:
 
 ```
-Current project: royaltek-dashboard (most recent)
-
-To switch to specific project:
-  User: continue web-ui-dashboard
-    ↓
-  Auto-loads dev/active/web-ui-dashboard/
-  
-Or just use most recent:
-  User: continue
-    ↓
-  Auto-detects most recent: web-ui-dashboard
-```
-
-## Resume Behavior
-
-### First Task of New Phase
-```
-Completing Phase 1, Task 5 ✓
-Moving to Phase 2...
-Resuming Phase 2, Task 1: API Development Setup
-```
-
-### Mid-Phase Resume
-```
-Resuming Phase 2
-Last completed: Task 2.3 ✓
-Next task: Task 2.4 - Error Handling Module
-```
-
-### Between Sessions (No Loss)
-```
-Session 1:
-  Completed tasks 1.1, 1.2, 1.3
-  Saved to tasks.md (60% progress)
-
-Session 2 (continue command):
-  Auto-loads tasks.md
-  Sees tasks 1.1, 1.2, 1.3 are done
-  Resumes from task 1.4
-  Perfect continuity!
+User: continue web-ui-dashboard
+  ↓
+Auto-loads dev/active/web-ui-dashboard/
+  ↓
+Continues from project root
 ```
 
 ## Task Status Updates
 
-After completing each task, tasks.md is updated:
+After completing each task, tasks.md is updated at: `dev/active/$PROJECT_NAME/$PROJECT_NAME-tasks.md`
 
 ```markdown
 ### Task 1.4: Database Schema Design
 - [x] **Status**: Completed
 - **Completion Time**: 45 minutes
-- **Notes**: Implemented PostgreSQL schema with proper indexing
-  - Created users table with authentication fields
-  - Created products table with relationships
-  - Added migration scripts
-```
-
-Progress automatically updates:
-
-```markdown
-## Progress Summary
-
-### Phase 1
-| Item | Count |
-|------|-------|
-| Total Tasks | 5 |
-| Completed | 4 |
-| In Progress | 1 |
-| Not Started | 0 |
-| **Progress** | **80%** |
+- **Notes**: Implementation details
 ```
 
 ## Important Notes
 
- **Automatic context loading** - No manual file loading needed  
- **No configuration** - Works with any project structure  
- **Seamless resumption** - Picks up exactly where you left off  
- **Progress persistence** - All work saved in markdown files  
- **Multiple projects** - Supports unlimited projects simultaneously  
- **Task dependencies** - Understands task relationships  
+- **Automatic context loading** - No manual file loading needed
+- **Working directory verified** - Always at project root
+- **Seamless resumption** - Picks up exactly where you left off
+- **Progress persistence** - All work saved in markdown files
+- **Code in project root** - `./src/`, `./tests/`, `./config/`
+- **Docs in dev/active/** - Planning documentation only
 
-## Next Steps After Completion
+## Next Steps
 
-### Current project complete?
-```
-/dev-docs
-Create new project with updated system
+After completing tasks:
 
-Or continue with /update-dev-docs
-```
-
-### Context getting full (85%+)?
-```
-/update-dev-docs
-Save all progress to files and clear context
-```
-
-### Switch to different project?
-```
-continue [project-name]
-Or just: continue (uses most recent)
-```
+- `/update-dev-docs` - Save progress when context is full
+- `/dev-docs` - Create new project
+- `continue` - Resume development
 
 ## Troubleshooting
 
 | Issue | Solution |
 |-------|----------|
-| "dev/active/ not found" | Run `/dev-docs` first to create project |
-| "Missing task file" | Run `/update-dev-docs` to ensure files are saved |
-| "Wrong project loading" | Use explicit project name: `continue project-name` |
-| "Progress not updating" | Check file permissions in dev/active/ directory |
+| Code in wrong location | Ensure you're at project root before running continue |
+| "dev/active/ not found" | Run `/dev-docs` first |
+| "Missing task file" | Run `/update-dev-docs` to save files |
+| Wrong project loading | Use explicit name: `continue project-name` |
 
 ## See Also
 

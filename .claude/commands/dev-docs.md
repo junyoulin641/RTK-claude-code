@@ -1,6 +1,6 @@
 ---
 name: dev-docs
-description: Create comprehensive development documentation with ULTRATHINK deep planning mode
+description: Create comprehensive development documentation with ULTRATHINK deep planning mode. Documentation saved to dev/active/[project-name]/, code will be created in project root.
 ---
 
 # Development Documentation Creator
@@ -10,6 +10,9 @@ Creates three comprehensive markdown documents for project planning:
 - **plan.md**: Complete project plan with phases, tasks, risks, and timeline
 - **context.md**: Project background, architecture, and key decisions
 - **tasks.md**: Detailed task checklist with progress tracking
+
+All documentation saved to `dev/active/[project-name]/`
+Code will be created in project root (`src/`, `tests/`, `config/`, etc.) when you run `Execute plan`
 
 ## How to Use
 ```
@@ -70,6 +73,8 @@ Show your complete thinking process.
 ### Step 3: Create Directory Structure
 ```bash
 mkdir -p dev/active/[project-name]
+# Code will NOT go here
+# Code will go in project root: ./src/, ./tests/, etc.
 ```
 
 ### Step 4: Enter PLANNING MODE
@@ -92,6 +97,7 @@ find . -type f \
   ! -path "*/.venv/*" \
   ! -path "*/.gradle/*" \
   ! -path "*/.maven/*" \
+  ! -path "*/dev/active/*" \
   ! -name "*.o" \
   ! -name "*.a" \
   ! -name "*.so" \
@@ -107,6 +113,7 @@ Understand:
 - Overall project structure
 - Number and types of files
 - Existing code organization
+- Current directories (src/, tests/, config/, etc.)
 
 #### 4b: Review Existing Code
 Look for and examine:
@@ -122,6 +129,7 @@ Based on code analysis, document:
 - How the current system works
 - What technologies are used
 - What the current limitations are
+- What directories exist (src/, tests/, config/, etc.)
 
 #### 4d: Analyze Requirements
 Based on user's description:
@@ -163,6 +171,7 @@ Compare different implementation approaches and recommend the best one.
 #### Document 1: [project-name]-plan.md
 
 **Purpose**: Complete project plan with all details
+**Location**: `dev/active/[project-name]/[project-name]-plan.md`
 
 **Required Sections**:
 
@@ -181,6 +190,17 @@ Compare different implementation approaches and recommend the best one.
 - Current limitations
 - What we're starting from
 
+## Working Directory Strategy
+- **Code Location**: Project root directory
+  - `./src/` - Source code
+  - `./tests/` - Test files
+  - `./config/` - Configuration files
+  - `./docs/` - Documentation (user-facing)
+- **Documentation Location**: `dev/active/[project-name]/`
+  - `[project-name]-plan.md`
+  - `[project-name]-context.md`
+  - `[project-name]-tasks.md`
+
 ## Implementation Phases
 
 ### Phase 1: [Phase Name] (Estimated X days)
@@ -189,6 +209,10 @@ Brief description of what this phase accomplishes
 #### Phase 1 Tasks:
 - **Task 1.1**: [Task Name]
   - Description: [What needs to be done]
+  - Files to Create/Modify:
+    - `./src/[filename]`
+    - `./tests/[filename]`
+    - `./config/[filename]`
   - Acceptance Criteria:
     - [ ] Criterion 1
     - [ ] Criterion 2
@@ -200,8 +224,6 @@ Brief description of what this phase accomplishes
 
 ### Phase 2: [Phase Name] (Estimated X days)
 [Same structure as Phase 1]
-
-### Phase N: ...
 
 ## Risk Assessment
 
@@ -221,18 +243,12 @@ Brief description of what this phase accomplishes
 - Total estimated duration: X weeks
 ```
 
-**Guidelines**:
-- Be comprehensive but concise
-- Include enough detail for Claude to understand the full scope
-- Estimate time realistically
-- Identify and plan for risks
-- No length limit - be thorough
-
 ---
 
 #### Document 2: [project-name]-context.md
 
 **Purpose**: Background information and key decisions
+**Location**: `dev/active/[project-name]/[project-name]-context.md`
 
 **Required Sections**:
 
@@ -244,24 +260,46 @@ Brief description of what this phase accomplishes
 - Business/technical motivation
 - Who it serves or what problem it solves
 
+## Working Directory Structure
+
+### Documentation Files (dev/active/[project-name]/)
+- `[project-name]-plan.md` - This planning document
+- `[project-name]-context.md` - Architecture and context
+- `[project-name]-tasks.md` - Task checklist and progress
+
+### Source Code Files (Project Root)
+```
+project-root/
+├── src/           ← All source code goes here
+├── tests/         ← All test files go here
+├── config/        ← Configuration files go here
+├── docs/          ← User-facing documentation
+└── dev/active/    ← Planning documents only
+    └── [project-name]/
+        ├── [project-name]-plan.md
+        ├── [project-name]-context.md
+        └── [project-name]-tasks.md
+```
+
 ## Key File Locations
 
 ### Backend Files
-- backend/src/... - [Brief description]
-- backend/config/... - [Brief description]
+- `src/...` - [Brief description]
+- `config/...` - [Brief description]
 
-### Frontend Files
-- src/components/... - [Brief description]
-- src/pages/... - [Brief description]
+### Frontend Files  
+- `src/components/...` - [Brief description]
+- `src/pages/...` - [Brief description]
 
 ### Configuration
-- package.json - [Key dependencies]
-- .env - [Key environment variables]
-- docker-compose.yml - [If applicable]
+- `package.json` - [Key dependencies]
+- `.env` - [Key environment variables]
+- `docker-compose.yml` - [If applicable]
 
 ### Documentation
-- README.md - [Current status]
-- docs/ - [Any existing documentation]
+- `README.md` - [Current status]
+- `docs/` - [Any existing documentation]
+- `dev/active/[project-name]/` - [This planning documentation]
 
 ## Current Architecture
 
@@ -304,17 +342,12 @@ Brief description of what this phase accomplishes
 - Current blockers: [Any issues to be aware of]
 ```
 
-**Guidelines**:
-- Practical and reference-oriented
-- Include actual file paths from the codebase
-- Document decisions for future reference
-- No length limit - be thorough but focused
-
 ---
 
 #### Document 3: [project-name]-tasks.md
 
 **Purpose**: Detailed task checklist with progress tracking
+**Location**: `dev/active/[project-name]/[project-name]-tasks.md`
 
 **Required Sections**:
 
@@ -324,11 +357,16 @@ Brief description of what this phase accomplishes
 **Project**: [Project Name]
 **Status**: Planning
 **Last Updated**: [Today's date]
+**Code Location**: Project root (./src/, ./tests/, ./config/)
+**Documentation Location**: dev/active/[project-name]/
 
 ## Phase 1: [Phase Name]
 
 ### Task 1.1: [Task Name]
 - [ ] **Status**: [ ] Not Started | [ ] In Progress | [ ] Completed
+- **Files to Create/Modify**:
+  - [ ] `./src/[filename]`
+  - [ ] `./tests/[filename]`
 - **Acceptance Criteria**:
   - [ ] Criterion 1
   - [ ] Criterion 2
@@ -372,6 +410,17 @@ Brief description of what this phase accomplishes
 | Not Started | X |
 | **Overall Progress** | **0%** |
 
+## File Changes Log
+
+Track files created during each task:
+
+### Task 1.1 Files Created
+- `./src/auth.py` (150 lines)
+- `./tests/test_auth.py` (100 lines)
+
+### Task 1.2 Files Created
+- `./src/config.py` (50 lines)
+
 ## Critical Path Analysis
 [Which tasks are on the critical path - blocking other tasks]
 
@@ -383,12 +432,6 @@ Brief description of what this phase accomplishes
 ## Notes
 [Any general notes about the project]
 ```
-
-**Guidelines**:
-- Clear status tracking
-- Detailed acceptance criteria
-- Clear dependencies
-- No length limit - be thorough
 
 ---
 
@@ -411,6 +454,7 @@ Review and verify:
 5. What could we have missed?
 6. Is the architecture decision sound?
 7. Are there any hidden dependencies?
+8. Is the working directory strategy clear?
 
 If you find issues, suggest improvements.
 ```
@@ -420,6 +464,7 @@ If you find issues, suggest improvements.
 - Plan completeness checked
 - Quality assurance pass
 - Hidden issues surfaced
+- Working directory strategy verified
 
 ### Step 7: Save All Three Files
 
@@ -437,6 +482,12 @@ dev/active/json-migration/
 ├── json-migration-plan.md
 ├── json-migration-context.md
 └── json-migration-tasks.md
+
+Code will go in:
+./src/
+./tests/
+./config/
+(etc. - project root)
 ```
 
 ### Step 8: Confirm Creation
@@ -446,10 +497,11 @@ After creating files, display:
 ✓ Planning mode completed with ULTRATHINK
 ✓ Project name: [project-name]
 ✓ Thinking budget used: 95,997 tokens (3 ultrathink passes)
-✓ Files created:
-  - dev/active/[project-name]/[project-name]-plan.md
-  - dev/active/[project-name]/[project-name]-context.md
-  - dev/active/[project-name]/[project-name]-tasks.md
+
+FILES CREATED:
+✓ dev/active/[project-name]/[project-name]-plan.md
+✓ dev/active/[project-name]/[project-name]-context.md
+✓ dev/active/[project-name]/[project-name]-tasks.md
 
 PLANNING INSIGHTS:
 - Architecture decisions based on deep analysis (Phase 1)
@@ -457,11 +509,21 @@ PLANNING INSIGHTS:
 - Implementation phases optimized (Phase 3)
 - Timeline is realistic
 
+WORKING DIRECTORY STRATEGY:
+✓ Documentation: dev/active/[project-name]/
+✓ Code: Project root (./src/, ./tests/, ./config/)
+✓ Separation is CLEAR in plan.md
+
 Next steps:
 1. Review the three documents
 2. Make any necessary changes
 3. Say "Execute plan" when ready to start development
 4. Or say "Update plan" if you want to make changes
+
+CRITICAL: When you say "Execute plan":
+- Code will be created in project root
+- NOT in dev/active/
+- Work in: ./src/, ./tests/, ./config/, etc.
 ```
 
 ---
@@ -491,11 +553,13 @@ Next steps:
    - Clear and actionable
    - Ready for review and approval
    - Professional formatting
+   - **Clear explanation of working directory strategy**
 
 5. **Directory Handling**
    - Check if project exists
    - Ask user what to do if it does
-   - Create directory if it doesn't exist
+   - Create `dev/active/[project-name]/` for documentation
+   - Code will go in project root (handled later)
    - Never silently overwrite
 
 ---
@@ -526,6 +590,9 @@ When /dev-docs completes successfully:
 - ✓ Generated realistic time estimates
 - ✓ Identified potential risks
 - ✓ Documented architecture decisions
+- ✓ Clearly separated working directories
+  - Documentation: `dev/active/[project-name]/`
+  - Code: Project root (`./src/`, `./tests/`, etc.)
 - ✓ Created three well-organized markdown files
 - ✓ Files saved to correct location
 - ✓ Ready for user review
@@ -562,21 +629,23 @@ QUALITY LEVEL: Enterprise-grade planning
 
 After /dev-docs is approved by user:
 
-### /execute-plan
+### Execute plan
 When user is ready to start development:
 - Begin implementing tasks from plan
 - Use code-format skill automatically
 - Update tasks.md as progress is made
+- **Create code in project root, NOT in dev/active/**
 
 ### /update-dev-docs
 When context is running low (85%+):
-- Save progress to markdown files
+- Save progress to markdown files in `dev/active/`
 - Update task status
 - Document any new decisions
 - Clear context to continue working
 
-### /continue
+### continue
 In new session:
-- Load dev/active/[project-name]/ files
+- Load `dev/active/[project-name]/` files
 - Understand full context
 - Continue from where you left off
+- **Code in project root, docs in dev/active/**
