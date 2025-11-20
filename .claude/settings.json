@@ -1,0 +1,83 @@
+{
+  "enableAllProjectMcpServers": false,
+  
+  "permissions": {
+    "allow": [
+      "Edit:*",
+      "Write:*",
+      "MultiEdit:*",
+      "Bash(git:*)",
+      "Bash(cat:*)",
+      "Bash(ls:*)",
+      "Bash(find:*)",
+      "Bash(grep:*)",
+      "Bash(sed:*)",
+      "Bash(date:*)",
+      "Bash(wc:*)",
+      "Skill(code-style)",
+      "Skill(code-format)"
+    ],
+    "defaultMode": "acceptEdits"
+  },
+
+  "hooks": {
+    "PostToolUse": [
+      {
+        "id": "auto-update-progress",
+        "description": "Auto-update tasks.md after file editing (PostToolUse Hook)",
+        "enabled": true,
+        "priority": "high",
+        "matcher": {
+          "filePatterns": [
+            "*.py",
+            "*.js",
+            "*.ts",
+            "*.tsx",
+            "*.jsx",
+            "*.java",
+            "*.cpp",
+            "*.c",
+            "*.h",
+            "*.md",
+            "*.json",
+            "*.yaml",
+            "*.yml",
+            "*.xml"
+          ],
+          "excludePatterns": [
+            "node_modules/*",
+            ".git/*",
+            "dist/*",
+            "build/*",
+            "__pycache__/*",
+            ".pytest_cache/*"
+          ]
+        },
+        "script": "$CLAUDE_PROJECT_DIR/.claude/hooks/post-tool-use-tracker.sh",
+        "scriptType": "bash",
+        "timeout": 15000,
+        "onError": "continue",
+        "async": false
+      }
+    ],
+
+    "Stop": [
+      {
+        "id": "final-status-check",
+        "description": "Final status check when user stops",
+        "enabled": true,
+        "priority": "medium",
+        "script": "$CLAUDE_PROJECT_DIR/.claude/hooks/stop-hook-handler.sh",
+        "timeout": 10000,
+        "onError": "continue"
+      }
+    ]
+  },
+
+  "environment": {
+    "CLAUDE_PROJECT_DIR": "$PWD",
+    "CLAUDE_PROJECT_NAME": "",
+    "CLAUDE_ENABLE_HOOKS": "true",
+    "CLAUDE_HOOK_DEBUG": "false"
+  }
+}

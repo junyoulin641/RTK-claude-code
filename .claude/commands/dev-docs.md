@@ -1,6 +1,6 @@
 ---
 name: dev-docs
-description: Create comprehensive development documentation in planning mode
+description: Create comprehensive development documentation with ULTRATHINK deep planning mode
 ---
 
 # Development Documentation Creator
@@ -38,6 +38,35 @@ If exists:
   - Option B: "Update existing project"
   - Option C: "Cancel and choose different name"
 
+### Step 2.5: ULTRATHINK PHASE 1 - Project Architecture Analysis
+
+**CRITICAL: Trigger Deep Thinking Here**
+
+Prompt Claude:
+```
+Ultrathink about the complete project architecture, 
+technical requirements, and implementation constraints for:
+
+PROJECT: [project-name]
+DESCRIPTION: [project-description]
+
+Consider these aspects:
+1. What are the core technical challenges?
+2. What existing patterns or code should be leveraged?
+3. What are the scalability requirements?
+4. What are the security considerations?
+5. What are the performance constraints?
+6. What are the maintainability requirements?
+
+Show your complete thinking process.
+```
+
+**What happens**: 
+- Claude spends 31,999 tokens thinking deeply
+- Analyzes all architectural dimensions
+- Considers multiple approaches
+- Identifies optimal path forward
+
 ### Step 3: Create Directory Structure
 ```bash
 mkdir -p dev/active/[project-name]
@@ -53,7 +82,25 @@ Execute:
 ```bash
 ls -la
 pwd
-find . -type f -name "*.py" -o -name "*.tsx" -o -name "*.ts" -o -name "*.json" | grep -v node_modules | grep -v __pycache__ | head -50
+find . -type f \
+  ! -path "*/node_modules/*" \
+  ! -path "*/__pycache__/*" \
+  ! -path "*/.git/*" \
+  ! -path "*/build/*" \
+  ! -path "*/dist/*" \
+  ! -path "*/target/*" \
+  ! -path "*/.venv/*" \
+  ! -path "*/.gradle/*" \
+  ! -path "*/.maven/*" \
+  ! -name "*.o" \
+  ! -name "*.a" \
+  ! -name "*.so" \
+  ! -name "*.dll" \
+  ! -name "*.exe" \
+  ! -name "*.pyc" \
+  ! -name "*.class" \
+  ! -name "*.jar" \
+  | head -100
 ```
 
 Understand:
@@ -81,6 +128,35 @@ Based on user's description:
 - What needs to be built/changed
 - What are the main goals
 - What are the constraints
+
+#### 4e: ULTRATHINK PHASE 2 - Risk & Design Analysis
+
+**CRITICAL: Second Deep Thinking Pass**
+
+Prompt Claude:
+```
+Ultrathink about the risks, edge cases, and optimal design decisions:
+
+PROJECT: [project-name]
+CURRENT ANALYSIS: [summary from Step 2.5]
+CODE STRUCTURE: [actual code review from Steps 4a-4d]
+
+Now consider:
+1. What are all possible failure points?
+2. What edge cases might break this implementation?
+3. Are there better architectural approaches?
+4. What dependencies could cause problems?
+5. What testing strategy would catch issues early?
+6. How does this integrate with existing systems?
+
+Compare different implementation approaches and recommend the best one.
+```
+
+**What happens**:
+- Another 31,999 tokens of deep thinking
+- Risk assessment with thorough analysis
+- Optimal design decisions identified
+- All trade-offs evaluated
 
 ### Step 5: Generate Three Documents
 
@@ -316,7 +392,36 @@ Brief description of what this phase accomplishes
 
 ---
 
-### Step 6: Save All Three Files
+### Step 6: ULTRATHINK PHASE 3 - Plan Verification
+
+**CRITICAL: Final Deep Thinking Pass**
+
+Prompt Claude:
+```
+Ultrathink about plan completeness and quality verification:
+
+PROJECT: [project-name]
+GENERATED PLAN: [Show the three documents]
+
+Review and verify:
+1. Does this plan address ALL identified risks?
+2. Are all phases properly sequenced?
+3. Are the time estimates realistic?
+4. Does this align with best practices?
+5. What could we have missed?
+6. Is the architecture decision sound?
+7. Are there any hidden dependencies?
+
+If you find issues, suggest improvements.
+```
+
+**What happens**:
+- Final 31,999 tokens verification
+- Plan completeness checked
+- Quality assurance pass
+- Hidden issues surfaced
+
+### Step 7: Save All Three Files
 
 Create files in: `dev/active/[project-name]/`
 
@@ -334,16 +439,23 @@ dev/active/json-migration/
 └── json-migration-tasks.md
 ```
 
-### Step 7: Confirm Creation
+### Step 8: Confirm Creation
 
 After creating files, display:
 ```
-✓ Planning mode completed
+✓ Planning mode completed with ULTRATHINK
 ✓ Project name: [project-name]
+✓ Thinking budget used: 95,997 tokens (3 ultrathink passes)
 ✓ Files created:
   - dev/active/[project-name]/[project-name]-plan.md
   - dev/active/[project-name]/[project-name]-context.md
   - dev/active/[project-name]/[project-name]-tasks.md
+
+PLANNING INSIGHTS:
+- Architecture decisions based on deep analysis (Phase 1)
+- All risks identified and mitigated (Phase 2)
+- Implementation phases optimized (Phase 3)
+- Timeline is realistic
 
 Next steps:
 1. Review the three documents
@@ -368,13 +480,19 @@ Next steps:
    - Be comprehensive
    - Think through risks and challenges
 
-3. **User-Friendly Output**
+3. **ULTRATHINK Triggers**
+   - Phase 1 (Step 2.5): Project architecture analysis
+   - Phase 2 (Step 4e): Risk and design analysis
+   - Phase 3 (Step 6): Plan verification
+   - Each phase uses 31,999 thinking tokens
+
+4. **User-Friendly Output**
    - Three complete, well-structured documents
    - Clear and actionable
    - Ready for review and approval
    - Professional formatting
 
-4. **Directory Handling**
+5. **Directory Handling**
    - Check if project exists
    - Ask user what to do if it does
    - Create directory if it doesn't exist
@@ -411,6 +529,32 @@ When /dev-docs completes successfully:
 - ✓ Created three well-organized markdown files
 - ✓ Files saved to correct location
 - ✓ Ready for user review
+- ✓ Completed 3 ultrathink deep thinking passes
+
+---
+
+## Thinking Budget Summary
+
+```
+ULTRATHINK PHASE 1: Project Architecture Analysis
+├── Thinking Tokens: 31,999
+├── Focus: Architecture, requirements, constraints
+└── Output: Deep architectural understanding
+
+ULTRATHINK PHASE 2: Risk & Design Analysis
+├── Thinking Tokens: 31,999
+├── Focus: Risks, edge cases, optimal design
+└── Output: Risk mitigation strategy
+
+ULTRATHINK PHASE 3: Plan Verification
+├── Thinking Tokens: 31,999
+├── Focus: Completeness, quality, best practices
+└── Output: Verified quality plan
+
+TOTAL THINKING BUDGET: 95,997 tokens
+EQUIVALENT: ~$0.50 cost
+QUALITY LEVEL: Enterprise-grade planning
+```
 
 ---
 
