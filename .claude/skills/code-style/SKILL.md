@@ -7,6 +7,31 @@ description: Apply RoyalTek coding standards with comprehensive function documen
 
 Apply RoyalTek's coding standards that combine language-specific best practices with company branding requirements.
 
+## ⚙️ Configuration from settings.json
+
+**CRITICAL: Author name MUST be read from `.claude/settings.json` environment variables:**
+
+```json
+{
+  "env": {
+    "AUTHOR_NAME": "Jim.lin",
+    "COMPANY_NAME": "RoyalTek Company Limited",
+    "AUTHOR_EMAIL": "Jim.lin@royaltek.com"
+  }
+}
+```
+
+**Rules for ALL code generation:**
+1. Always use the EXACT format shown below
+2. Do NOT create custom formats
+3. Do NOT add extra spacing or different layouts
+4. Do NOT use alternative header styles
+5. Use author from settings.json (Jim.lin)
+6. Use CURRENT YEAR for copyright (NOT hardcoded 2024)
+7. Use CURRENT DATE for file date (NOT a placeholder)
+
+---
+
 ## Core Principles
 
 **Respect language conventions** - Each language follows its established community standards (Python: PEP 8, JavaScript: Airbnb/Standard, etc.)
@@ -81,17 +106,91 @@ Used in JavaScript, TypeScript, Java, and C/C++:
 
 ## Required File Header
 
-Every file MUST start with this header. Use the appropriate comment style for your language:
+Every file MUST use EXACTLY this format. Do NOT deviate or customize.
 
-### C/C++, Java, JavaScript, TypeScript
+### Python File Header - EXACT FORMAT
+
+**This is the ONLY correct format for Python. Copy exactly as shown:**
+
+```python
+"""
+**************************************************
+*      RoyalTek Company Limited                  *
+*      Copyright [CURRENT_YEAR] RoyalTek Co., Ltd.         *
+*      All Rights Reserved                       *
+**************************************************
+File Name: [filename].py
+Author: Jim.lin
+Date: [YYYY/MM/DD]
+Description:
+    [Brief description of file purpose]
+Notes:
+    [Dependencies or special notes]
+**************************************************
+"""
+```
+
+**Important:**
+- Replace `[CURRENT_YEAR]` with the current year (e.g., 2025 if today is 2025)
+- Replace `[filename]` with actual filename (e.g., main.py)
+- Replace `[YYYY/MM/DD]` with today's date (e.g., 2025/11/28)
+- Author MUST be Jim.lin (from settings.json AUTHOR_NAME)
+
+**INCORRECT examples to AVOID:**
+
+❌ DO NOT use this format:
+```python
+"""
+================================================================================
+File Name    : main.py
+Author       : Jim.lin
+Date         : 2025/11/28
+Company      : RoyalTek Company Limited
+Description  : ...
+================================================================================
+"""
+```
+
+❌ DO NOT hardcode year (wrong):
+```python
+"""
+*      Copyright 2024 RoyalTek Co., Ltd.  ← WRONG! Should be current year
+"""
+```
+
+**Example of CORRECT Python header (today is 2025/11/28):**
+
+```python
+"""
+**************************************************
+*      RoyalTek Company Limited                  *
+*      Copyright 2025 RoyalTek Co., Ltd.         *
+*      All Rights Reserved                       *
+**************************************************
+File Name: main.py
+Author: Jim.lin
+Date: 2025/11/28
+Description:
+    Main CLI application module for RTK-AI-Kit.
+    Provides command-line interface with start, info, and version commands.
+Notes:
+    Requires Click library for CLI functionality
+**************************************************
+"""
+```
+
+### C/C++, Java, JavaScript, TypeScript File Header - EXACT FORMAT
+
+**This is the ONLY correct format. Copy exactly as shown:**
+
 ```c
 /**************************************************
-*      RoyalTek Company Limited                   *
-*      Copyright [YYYY] RoyalTek Co., Ltd.        *
-*      All Rights Reserved                        *
+*      RoyalTek Company Limited                  *
+*      Copyright [CURRENT_YEAR] RoyalTek Co., Ltd.         *
+*      All Rights Reserved                       *
 ***************************************************
 File Name: [filename]
-Author: [author name]
+Author: Jim.lin
 Date: [YYYY/MM/DD]
 Description:
     [Brief description of file purpose]
@@ -100,54 +199,41 @@ Notes:
 ***************************************************/
 ```
 
-### Python
-```python
-"""
-**************************************************
+**Important:**
+- Replace `[CURRENT_YEAR]` with the current year (e.g., 2025)
+- Replace `[filename]` with actual filename (e.g., main.js)
+- Replace `[YYYY/MM/DD]` with today's date (e.g., 2025/11/28)
+- Author MUST be Jim.lin (from settings.json AUTHOR_NAME)
+
+**Example of CORRECT JavaScript header (today is 2025/11/28):**
+
+```javascript
+/**************************************************
 *      RoyalTek Company Limited                  *
-*      Copyright 2024 RoyalTek Co., Ltd.         *
+*      Copyright 2025 RoyalTek Co., Ltd.         *
 *      All Rights Reserved                       *
-**************************************************
-File Name: [filename].py
-Author: [author name]
-Date: [YYYY/MM/DD]
+***************************************************
+File Name: main.js
+Author: Jim.lin
+Date: 2025/11/28
 Description:
-    [Brief description of file purpose]
+    Main entry point for the application.
+    Sets up CLI with command handlers.
 Notes:
-    [Dependencies or special notes]
-**************************************************
-"""
+    Uses yargs for CLI argument parsing
+***************************************************/
 ```
 
 ## Required Function Documentation
 
-Every function MUST have this documentation format. Use the appropriate comment style:
+Every function MUST have this documentation format. Use the appropriate comment style.
 
-### C/C++, Java, JavaScript, TypeScript
-```c
-/************************************************
-Function Name: functionName
-Author: [author name]
-Date: [YYYY/MM/DD]
-Description:
-    [Detailed function description]
-Parameters:
-    type paramName - [parameter description]
-    type paramName - [parameter description]
-Return:
-    type - [return value description]
-Notes:
-    [Special considerations]
-Example:
-    [usage example]
-************************************************/
-```
+### Python Function Documentation - EXACT FORMAT
 
-### Python
 ```python
 ################################################
 # Function Name: function_name
-# Author: [author name]
+# Author: Jim.lin
 # Date: [YYYY/MM/DD]
 # Description:
 #     [Detailed function description]
@@ -159,9 +245,38 @@ Example:
 # Notes:
 #     [Special considerations]
 # Example:
-#     [usage example]
+#     result = function_name(arg1, arg2)
 ################################################
 ```
+
+**Important:**
+- Replace `[YYYY/MM/DD]` with current date (e.g., 2025/11/28)
+- Author MUST be Jim.lin (from settings.json AUTHOR_NAME)
+
+### C/C++, Java, JavaScript, TypeScript Function Documentation - EXACT FORMAT
+
+```c
+/************************************************
+Function Name: functionName
+Author: Jim.lin
+Date: [YYYY/MM/DD]
+Description:
+    [Detailed function description]
+Parameters:
+    type paramName - [parameter description]
+    type paramName - [parameter description]
+Return:
+    type - [return value description]
+Notes:
+    [Special considerations]
+Example:
+    result = functionName(arg1, arg2)
+************************************************/
+```
+
+**Important:**
+- Replace `[YYYY/MM/DD]` with current date (e.g., 2025/11/28)
+- Author MUST be Jim.lin (from settings.json AUTHOR_NAME)
 
 ## Code Structure Pattern
 
@@ -220,17 +335,44 @@ Use templates from `assets/templates/` as starting points:
 - `assets/templates/cpp_template.cpp`
 - `assets/templates/java_template.java`
 
+**These templates show the EXACT format to use. Copy them precisely.**
+
 ## Company Branding
 
 For documents requiring company branding:
 ```bash
 # Add logo to documents
-python scripts/addCompanyBranding.py <input> <output>
+python scripts/addCompanyBranding.py <input> <o>
 ```
 
 ## Important Notes
 
-1. **Language conventions respected** - Each language follows its community standards (PEP 8 for Python, etc.)
-2. **RoyalTek elements mandatory** - File headers, function docs, and code structure always required
-3. **Third-party code exempt** - Only apply to RoyalTek-authored code
-4. **Quality over uniformity** - Better code through established best practices
+1. **File Header Format** - MUST match the exact format shown above. No custom layouts allowed.
+2. **Author information** - Always use Jim.lin (from settings.json AUTHOR_NAME)
+3. **Copyright year** - Use CURRENT YEAR (NOT hardcoded). Auto-detect from system date.
+4. **File date** - Use TODAY'S DATE in YYYY/MM/DD format (auto-detect from system)
+5. **Company name** - Always use RoyalTek Company Limited
+6. **Asterisks and spacing** - Match the template exactly. Do NOT use equals signs (=) or other characters.
+7. **Language conventions respected** - Each language follows its community standards (PEP 8 for Python, etc.)
+8. **RoyalTek elements mandatory** - File headers, function docs, and code structure always required
+9. **Third-party code exempt** - Only apply to RoyalTek-authored code
+10. **Quality over uniformity** - Better code through established best practices
+11. **STRICT COMPLIANCE** - When generating code, use EXACTLY the format shown in this document. Do not create alternative formats.
+
+---
+
+## Summary of Exact Formats
+
+| Element | Python | JS/Java/C++ |
+|---------|--------|------------|
+| File header start | `"""` | `/**` |
+| Border char | `*` (asterisk) | `*` (asterisk) |
+| Border style | `**` lines | `**` lines |
+| File header end | `"""` | `*/` |
+| Function doc start | `#` | `/` |
+| Function doc end | `#` | `/` |
+| Copyright year | Current year (auto) | Current year (auto) |
+| File date | Today's date (auto) | Today's date (auto) |
+| Author | Jim.lin (from settings) | Jim.lin (from settings) |
+
+**All use `*` and `**` for borders. NO equals signs, NO pipes, NO other characters.**

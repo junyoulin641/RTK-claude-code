@@ -1,15 +1,16 @@
 /**************************************************
 *      RoyalTek Company Limited                  *
-*      Copyright 2024 RoyalTek Co., Ltd.         *
+*      Copyright [YYYY] RoyalTek Co., Ltd.         *
 *      All Rights Reserved                       *
 **************************************************
 File Name: [MODULE_NAME].js
-Author: [YOUR_NAME]
+Author: Jim.lin (from settings.json AUTHOR_NAME)
 Date: [YYYY/MM/DD]
 Description:
     [Brief description of what this module does]
 Notes:
     [Any dependencies or special requirements]
+    Author should always be read from .claude/settings.json AUTHOR_NAME
 ***************************************************/
 
 // Constants
@@ -19,7 +20,7 @@ const SZ_API_BASE_URL = '/api/v1';
 
 /************************************************
 Function Name: initializeModule
-Author: [YOUR_NAME]
+Author: Jim.lin (from settings.json AUTHOR_NAME)
 Date: [YYYY/MM/DD]
 Description:
     Initializes the module with default settings
@@ -30,6 +31,7 @@ Return:
     Promise<boolean> - True if initialization successful
 Notes:
     Must be called before using other functions
+    Author in this file should be: Jim.lin (from settings.json)
 Example:
     const bSuccess = await initializeModule(oConfig, true);
 ************************************************/
@@ -60,7 +62,7 @@ async function initializeModule(oConfig, bDebugMode = false) {
 
 /************************************************
 Function Name: processData
-Author: [YOUR_NAME]
+Author: Jim.lin (from settings.json AUTHOR_NAME)
 Date: [YYYY/MM/DD]
 Description:
     Main data processing function
@@ -71,6 +73,7 @@ Return:
     Array - Processed data items
 Notes:
     Returns empty array if processing fails
+    Author in this file should be: Jim.lin (from settings.json)
 Example:
     const aResult = processData(aDataArray, {bValidate: true});
 ************************************************/
@@ -100,7 +103,7 @@ function processData(aInputData, oOptions = {}) {
 
 /************************************************
 Function Name: transformItem
-Author: [YOUR_NAME]
+Author: Jim.lin (from settings.json AUTHOR_NAME)
 Date: [YYYY/MM/DD]
 Description:
     Transforms a single data item
@@ -111,6 +114,7 @@ Return:
     Object - Transformed item
 Notes:
     Helper function for processData
+    Author in this file should be: Jim.lin (from settings.json)
 Example:
     const oTransformed = transformItem({iId: 1}, {});
 ************************************************/
@@ -137,7 +141,7 @@ function transformItem(oItem, oOptions) {
 
 /************************************************
 Function Name: validateItem
-Author: [YOUR_NAME]
+Author: Jim.lin (from settings.json AUTHOR_NAME)
 Date: [YYYY/MM/DD]
 Description:
     Validates a data item
@@ -147,6 +151,7 @@ Return:
     boolean - True if item is valid
 Notes:
     Add validation rules as needed
+    Author in this file should be: Jim.lin (from settings.json)
 Example:
     const bIsValid = validateItem({iId: 1, szName: "test"});
 ************************************************/
@@ -171,7 +176,7 @@ function validateItem(oItem) {
 
 /************************************************
 Function Name: loadConfiguration
-Author: [YOUR_NAME]
+Author: Jim.lin (from settings.json AUTHOR_NAME)
 Date: [YYYY/MM/DD]
 Description:
     Loads configuration settings
@@ -181,6 +186,7 @@ Return:
     Promise<Object> - Loaded configuration
 Notes:
     Can load from file or API
+    Author in this file should be: Jim.lin (from settings.json)
 Example:
     const oLoadedConfig = await loadConfiguration(oConfig);
 ************************************************/
@@ -209,7 +215,7 @@ async function loadConfiguration(oConfig) {
 
 /************************************************
 Function Name: setupEnvironment
-Author: [YOUR_NAME]
+Author: Jim.lin (from settings.json AUTHOR_NAME)
 Date: [YYYY/MM/DD]
 Description:
     Sets up the execution environment
@@ -219,6 +225,7 @@ Return:
     void
 Notes:
     Configures global settings and environment variables
+    Author in this file should be: Jim.lin (from settings.json)
 Example:
     setupEnvironment({bDebug: true});
 ************************************************/
@@ -242,7 +249,7 @@ function setupEnvironment(oConfig) {
 
 /************************************************
 Function Name: fetchUserData
-Author: [YOUR_NAME]
+Author: Jim.lin (from settings.json AUTHOR_NAME)
 Date: [YYYY/MM/DD]
 Description:
     Fetches user data from API
@@ -252,6 +259,7 @@ Return:
     Promise<Object> - User data object
 Notes:
     Uses async/await pattern
+    Author in this file should be: Jim.lin (from settings.json)
 Example:
     const oUser = await fetchUserData(123);
 ************************************************/
@@ -282,7 +290,7 @@ async function fetchUserData(iUserId) {
 
 /************************************************
 Function Name: createUser
-Author: [YOUR_NAME]
+Author: Jim.lin (from settings.json AUTHOR_NAME)
 Date: [YYYY/MM/DD]
 Description:
     Creates a new user
@@ -294,6 +302,7 @@ Return:
     Promise<Object> - Created user object
 Notes:
     Validates user data before creation
+    Author in this file should be: Jim.lin (from settings.json)
 Example:
     const oNewUser = await createUser({szUserName: "John", szEmail: "john@example.com"});
 ************************************************/

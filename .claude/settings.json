@@ -19,40 +19,9 @@
     ],
     "defaultMode": "acceptEdits"
   },
-
-  "hooks": {
-    "UserPromptSubmit": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/skill-activation-prompt.sh"
-          }
-        ]
-      }
-    ],
-    "PostToolUse": [
-      {
-        "matcher": "Edit|MultiEdit|Write",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python3 ${CLAUDE_PLUGIN_ROOT}/.claude/hooks/post-tool-use-tracker.py"
-          }
-        ]
-      }
-    ],
-
-    "Stop": [
-      {
-        "id": "final-status-check",
-        "description": "Final status check when user stops",
-        "enabled": true,
-        "priority": "medium",
-        "script": "$CLAUDE_PROJECT_DIR/.claude/hooks/stop-hook-handler.sh",
-        "timeout": 10000,
-        "onError": "continue"
-      }
-    ]
+  "env": {
+    "AUTHOR_NAME": "Jim.lin",
+    "COMPANY_NAME": "RoyalTek Company Limited",
+    "AUTHOR_EMAIL": "Jim.lin@royaltek.com"
   }
 }

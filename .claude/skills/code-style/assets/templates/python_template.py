@@ -1,16 +1,17 @@
 """
 **************************************************
 *      RoyalTek Company Limited                  *
-*      Copyright 2024 RoyalTek Co., Ltd.         *
+*      Copyright [YYYY] RoyalTek Co., Ltd.         *
 *      All Rights Reserved                       *
 **************************************************
 File Name: [MODULE_NAME].py
-Author: [YOUR_NAME]
+Author: Jim.lin (from settings.json AUTHOR_NAME)
 Date: [YYYY/MM/DD]
 Description:
     [Brief description of what this module does]
 Notes:
     [Any dependencies or special requirements]
+    Author should always be read from .claude/settings.json AUTHOR_NAME
 **************************************************
 """
 
@@ -24,7 +25,7 @@ MAX_RETRIES = 3
 
 ################################################
 # Function Name: initialize_module
-# Author: [YOUR_NAME]
+# Author: Jim.lin (from settings.json AUTHOR_NAME)
 # Date: [YYYY/MM/DD]
 # Description:
 #     Initializes the module with default settings
@@ -35,6 +36,7 @@ MAX_RETRIES = 3
 #     bool - True if initialization successful
 # Notes:
 #     Must be called before using other functions
+#     Author in this file should be: Jim.lin (from settings.json)
 # Example:
 #     success = initialize_module("./config.json", True)
 ################################################
@@ -61,7 +63,7 @@ def initialize_module(config_path, debug_mode=False):
 
 ################################################
 # Function Name: process_data
-# Author: [YOUR_NAME]
+# Author: Jim.lin (from settings.json AUTHOR_NAME)
 # Date: [YYYY/MM/DD]
 # Description:
 #     Main data processing function
@@ -72,6 +74,7 @@ def initialize_module(config_path, debug_mode=False):
 #     list - Processed data items
 # Notes:
 #     Returns empty list if processing fails
+#     Author in this file should be: Jim.lin (from settings.json)
 # Example:
 #     result = process_data(data_list, {"validate": True})
 ################################################
@@ -100,7 +103,7 @@ def process_data(input_data, options=None):
 
 ################################################
 # Function Name: transform_item
-# Author: [YOUR_NAME]
+# Author: Jim.lin (from settings.json AUTHOR_NAME)
 # Date: [YYYY/MM/DD]
 # Description:
 #     Transforms a single data item
@@ -111,6 +114,7 @@ def process_data(input_data, options=None):
 #     dict - Transformed item
 # Notes:
 #     Helper function for process_data
+#     Author in this file should be: Jim.lin (from settings.json)
 # Example:
 #     transformed = transform_item({"id": 1}, {})
 ################################################
@@ -134,7 +138,7 @@ def transform_item(item, options):
 
 ################################################
 # Function Name: validate_item
-# Author: [YOUR_NAME]
+# Author: Jim.lin (from settings.json AUTHOR_NAME)
 # Date: [YYYY/MM/DD]
 # Description:
 #     Validates a data item
@@ -144,6 +148,7 @@ def transform_item(item, options):
 #     bool - True if item is valid
 # Notes:
 #     Add validation rules as needed
+#     Author in this file should be: Jim.lin (from settings.json)
 # Example:
 #     is_valid = validate_item({"id": 1, "name": "test"})
 ################################################
@@ -164,7 +169,7 @@ def validate_item(item):
 
 ################################################
 # Function Name: load_configuration
-# Author: [YOUR_NAME]
+# Author: Jim.lin (from settings.json AUTHOR_NAME)
 # Date: [YYYY/MM/DD]
 # Description:
 #     Loads configuration from file
@@ -174,6 +179,7 @@ def validate_item(item):
 #     dict - Configuration dictionary
 # Notes:
 #     Supports JSON format
+#     Author in this file should be: Jim.lin (from settings.json)
 # Example:
 #     config = load_configuration("./config.json")
 ################################################
@@ -193,7 +199,7 @@ def load_configuration(config_path):
 
 ################################################
 # Function Name: setup_environment
-# Author: [YOUR_NAME]
+# Author: Jim.lin (from settings.json AUTHOR_NAME)
 # Date: [YYYY/MM/DD]
 # Description:
 #     Sets up the execution environment
@@ -203,6 +209,7 @@ def load_configuration(config_path):
 #     None
 # Notes:
 #     Configures logging and environment variables
+#     Author in this file should be: Jim.lin (from settings.json)
 # Example:
 #     setup_environment({"debug": True})
 ################################################
@@ -222,7 +229,7 @@ def setup_environment(config):
 
 ################################################
 # Function Name: main
-# Author: [YOUR_NAME]
+# Author: Jim.lin (from settings.json AUTHOR_NAME)
 # Date: [YYYY/MM/DD]
 # Description:
 #     Main entry point for the module
@@ -232,6 +239,7 @@ def setup_environment(config):
 #     None
 # Notes:
 #     Called when script is run directly
+#     Author in this file should be: Jim.lin (from settings.json)
 # Example:
 #     python module.py --config ./config.json
 ################################################

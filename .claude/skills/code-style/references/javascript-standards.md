@@ -21,7 +21,7 @@ JavaScript/TypeScript follows Hungarian notation for variables, similar to C/C++
 ### Naming Examples
 
 ```javascript
-// ✅ CORRECT - Hungarian notation + camelCase
+//  CORRECT - Hungarian notation + camelCase
 let szUserName = "John";
 let iUserAge = 25;
 let fPrice = 99.99;
@@ -34,7 +34,7 @@ function processUser(szName, iAge) {
     return { szName, iAge };
 }
 
-// ❌ WRONG - No type prefix
+//  WRONG - No type prefix
 let userName = "John";    // Missing 'sz' prefix
 let userAge = 25;         // Missing 'i' prefix
 let isActive = true;      // Missing 'b' prefix
@@ -95,7 +95,7 @@ async function getUserById(iUserId, bIncludeDetails = false) {
         // Return result
         return oUserData;
     } catch (oError) {
-        console.error('❌ Error fetching user:', oError);
+        console.error(' Error fetching user:', oError);
         return null;
     }
 }
@@ -210,7 +210,7 @@ function processUserData(
     // Main logic
     const aErrors = validateData(oUserData, aValidationRules);
     if (aErrors.length > 0) {
-        console.error('❌ Validation errors:', aErrors);
+        console.error(' Validation errors:', aErrors);
         return null;
     }
     
@@ -274,7 +274,7 @@ class DatabaseManager {
             // Return result
             return true;
         } catch (oError) {
-            console.error('❌ Connection failed:', oError);
+            console.error(' Connection failed:', oError);
             return false;
         }
     }
@@ -285,7 +285,7 @@ class DatabaseManager {
 
 ### Arrow Functions (with Hungarian notation)
 ```javascript
-// ✅ CORRECT - Using Hungarian notation
+//  CORRECT - Using Hungarian notation
 const fnCalculateTotal = (aItemList) => {
     // Parameter validation
     if (!aItemList || !Array.isArray(aItemList)) {
@@ -299,7 +299,7 @@ const fnCalculateTotal = (aItemList) => {
     return fTotalAmount;
 };
 
-// ❌ WRONG - No type prefix
+//  WRONG - No type prefix
 const calculateTotal = (itemList) => {  // Missing prefixes
     // ...
 };
@@ -326,7 +326,7 @@ async function fetchUserData(iUserId) {
         // Return result
         return oCompleteUser;
     } catch (oError) {
-        console.error('❌ Error fetching user data:', oError);
+        console.error(' Error fetching user data:', oError);
         throw oError;
     }
 }
@@ -421,7 +421,7 @@ function UserProfile({ iUserId, bShowDetails = false }) {
             const oData = await getUserById(iUserId);
             setUserData(oData);
         } catch (oError) {
-            console.error('❌ Failed to load user:', oError);
+            console.error(' Failed to load user:', oError);
         } finally {
             setIsLoading(false);
         }

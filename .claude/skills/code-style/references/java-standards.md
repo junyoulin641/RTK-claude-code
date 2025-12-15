@@ -22,7 +22,7 @@ Java follows Hungarian notation for variables, similar to C/C++.
 ### Naming Examples
 
 ```java
-// ✅ CORRECT - Hungarian notation
+//  CORRECT - Hungarian notation
 String szUserName = "John";
 int iUserAge = 25;
 float fPrice = 99.99f;
@@ -35,7 +35,7 @@ public User getUserById(int iUserId) {
     return userRepository.findById(iUserId);
 }
 
-// ❌ WRONG - No type prefix
+//  WRONG - No type prefix
 String userName = "John";     // Missing 'sz' prefix
 int userAge = 25;             // Missing 'i' prefix
 boolean isActive = true;      // Missing 'b' prefix

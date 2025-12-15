@@ -285,29 +285,29 @@ auto findItemInContainer(const Container& container,
 
 ### Variables and Functions: camelCase
 ```cpp
-int userAge = 25;              // ✅ Correct
-std::string firstName = "John"; // ✅ Correct
+int userAge = 25;              //  Correct
+std::string firstName = "John"; // Correct
 
-int user_age = 25;              // ❌ Wrong (no snake_case)
-std::string first_name = "John"; // ❌ Wrong
+int user_age = 25;              //  Wrong (no snake_case)
+std::string first_name = "John"; //  Wrong
 ```
 
 ### Classes and Structs: PascalCase
 ```cpp
-class UserAccount { };          // ✅ Correct
-struct DatabaseConfig { };      // ✅ Correct
+class UserAccount { };          //  Correct
+struct DatabaseConfig { };      //  Correct
 
-class user_account { };         // ❌ Wrong
-struct database_config { };     // ❌ Wrong
+class user_account { };         //  Wrong
+struct database_config { };     //  Wrong
 ```
 
 ### Constants and Macros: UPPER_CASE
 ```cpp
-#define MAX_BUFFER_SIZE 1024    // ✅ Correct
-const int DEFAULT_PORT = 8080;  // ✅ Correct
+#define MAX_BUFFER_SIZE 1024    //  Correct
+const int DEFAULT_PORT = 8080;  //  Correct
 
-#define MaxBufferSize 1024      // ❌ Wrong
-const int defaultPort = 8080;   // ❌ Wrong (for constants)
+#define MaxBufferSize 1024      //  Wrong
+const int defaultPort = 8080;   //  Wrong (for constants)
 ```
 
 ## Memory Management
@@ -368,14 +368,14 @@ bool readFileContent(const std::string& filePath,
                     std::string& content) {
     // Parameter validation
     if (filePath.empty()) {
-        std::cerr << "❌ Error: Empty file path" << std::endl;
+        std::cerr << " Error: Empty file path" << std::endl;
         return false;
     }
     
     // Main logic
     std::ifstream fileStream(filePath);
     if (!fileStream.is_open()) {
-        std::cerr << "❌ Error: Cannot open file: " << filePath << std::endl;
+        std::cerr << " Error: Cannot open file: " << filePath << std::endl;
         return false;
     }
     
@@ -388,7 +388,7 @@ bool readFileContent(const std::string& filePath,
         return true;
         
     } catch (const std::exception& error) {
-        std::cerr << "❌ Error reading file: " << error.what() << std::endl;
+        std::cerr << " Error reading file: " << error.what() << std::endl;
         return false;
     }
 }

@@ -6,7 +6,7 @@ Python follows PEP 8 conventions. RoyalTek adds mandatory file headers and funct
 
 ### Variable and Function Names (PEP 8 Standard)
 ```python
-# ✅ CORRECT - PEP 8 Standard
+#  CORRECT - PEP 8 Standard
 first_name = "John"
 last_name = "Doe"
 user_age = 25
@@ -20,14 +20,14 @@ def calculate_total(item_list):
         total_amount += item.price
     return total_amount
 
-# ❌ WRONG - Not Python Standard
+#  WRONG - Not Python Standard
 firstName = "John"   # Don't use camelCase for variables
 getUserName()        # Don't use camelCase for functions
 ```
 
 ### Class Names - PascalCase (PEP 8 Standard)
 ```python
-# ✅ CORRECT
+#  CORRECT
 class UserAccount:
     def __init__(self):
         self.account_id = None
@@ -36,7 +36,7 @@ class DatabaseManager:
     def connect_to_database(self):
         pass
 
-# ❌ WRONG
+#  WRONG
 class userAccount:    # Don't use lowercase
     pass
 class User_Account:   # Don't use snake_case for classes
@@ -126,7 +126,7 @@ def process_data(data_list):
             result = transform_data(data_item)
             processed_data.append(result)
     except Exception as error:
-        print(f"❌ Error processing data: {str(error)}")
+        print(f" Error processing data: {str(error)}")
         return None
     
     # Return result
@@ -283,7 +283,7 @@ const-rgx=[A-Z_][A-Z0-9_]+$
 5. **Not following three-part structure**: Always use validation → logic → return
 6. **Improper main function structure**: Use proper main function
 ```python
-# ✅ CORRECT
+#  CORRECT
 def main():
     # Main execution logic
     pass
