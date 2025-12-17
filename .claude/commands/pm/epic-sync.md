@@ -87,7 +87,7 @@ echo "📌 Creating labels if needed..."
 gh label create \
   --repo "$REPO" \
   --name "epic" \
-  --description "CCPM Epic - High-level feature group" \
+  --description "Epic - High-level feature group" \
   --color "3f51b5" \
   2>/dev/null || true
 
@@ -101,7 +101,7 @@ gh label create \
 gh label create \
   --repo "$REPO" \
   --name "task" \
-  --description "CCPM Task - Actionable work item" \
+  --description "Task - Actionable work item" \
   --color "4caf50" \
   2>/dev/null || true
 
@@ -265,16 +265,6 @@ done
 echo "" >> "$epic_dir/github-mapping.md"
 echo "Synced: $(date -u +"%Y-%m-%dT%H:%M:%SZ")" >> "$epic_dir/github-mapping.md"
 ```
-
-### 6. Create Worktree
-
-```bash
-git checkout main
-git pull origin main
-
-git worktree add ../epic-$feature_name -b epic/$feature_name
-```
-
 ## Output
 
 ```
