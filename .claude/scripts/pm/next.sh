@@ -10,7 +10,17 @@ echo ""
 # Find tasks that are open and have no dependencies or whose dependencies are closed
 found=0
 
-for epic_dir in .claude/epics/*/; do
+# Determine which directory structure to use
+if [ -d ".claude/epics" ]; then
+  search_pattern=".claude/epics/*/"
+elif [ -d "./doc" ]; then
+  search_pattern="./doc/*/epics/*/*/"
+else
+  echo "No epic directories found."
+  exit 0
+fi
+
+for epic_dir in $search_pattern; do
   [ -d "$epic_dir" ] || continue
   epic_name=$(basename "$epic_dir")
 
